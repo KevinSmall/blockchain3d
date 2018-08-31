@@ -34,7 +34,7 @@ However, as the name suggests, the current focus of Blockchain3D is to visualise
 ## Prerequisites
 [Install Unity](https://unity3d.com/get-unity/download). The project is currently developed with Unity 2018.1.0f2. Later Unity versions should work fine.
 
-The project makes calls to [blockchain.info](https://blockchain.info) to get the necessary bitcoin data to display. A small amount of test data is built in and so the project can also be run offline. If you intend making very many calls to the blockchain.info site, you will need to [apply to them for a free API key](https://www.blockchain.com/api) to bypass their request limiter. To run the demos and play around, you will not need an API key.
+The project makes calls to [blockchain.info](https://blockchain.info) to get the necessary bitcoin data to display. If you intend making very many calls to the blockchain.info site, you will need to [apply to them for a free API key](https://www.blockchain.com/api) to bypass their request limiter. To run the demos and play around, you will not need an API key. In addition, a small amount of bitcoin test data is built in and so the project can also be run completely offline. 
 
 ## Installation
 Download or clone [this repository](https://github.com/KevinSmall/blockchain3d). All of Blockchain3D is contained in the `B3d` folder. To help orientate yourself in the project, note these folders under the top level `\Assets\B3d\` folder:
