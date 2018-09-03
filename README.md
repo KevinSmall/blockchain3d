@@ -69,7 +69,10 @@ Blue spheres are bitcoin transactions. Red cubes are bitcoin addresses. The cube
 
 A bitcoin transaction is nothing more than a flow of bitcoin *from* one or more addresses (the inputs) *to* one or more addresses (the outputs). An address can be both an input *and* an output for a transaction (the address is said to be "receiving change"). In this case the arrow on the edge connecting the nodes will be bi-directional.
 
-When run directly, the `world` scene defaults to being online showing some specific transaction data. The `world` scene can also be run via the `loginscreen` scene. To do this, open the `loginscreen` scene in the same folder and run it. From here you can specify a start address or transaction, and you can choose to run offline using demo data only. When run with demo data, the application does not need internet access and it won't try to get data that is outside the test data set.
+## Sources of Data
+When run directly, the `world` scene defaults to being online showing some specific bitcoin transaction data sourced from blockchain.info. The `world` scene can also be run via the `loginscreen` scene. 
+
+To do this, open the `loginscreen` scene in the same folder and run it. From here you can specify a start address or transaction, and you can choose to run offline using demo data only. When run with demo data, the application does not need internet access and it won't try to get data that is outside the test data set.
 
 ## How to Interact
 If the build target is Windows/Mac/Linux then it is possible to look and fly around in the game window in the editor using mouse and WASD keys (and QE for up down).  If the build target is Android then the controls are different because the Unity editor tries to emulate VR mode (press shift or alt and use mouse to do VR-like head movements).
