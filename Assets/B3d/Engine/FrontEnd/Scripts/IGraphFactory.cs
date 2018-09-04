@@ -16,6 +16,8 @@ using B3d.Engine.Cdm;
 namespace B3d.Engine.FrontEnd
 {
    /// <summary>
+   /// Interface defining a graph factory. The graph factory will receive calls to create or update
+   /// nodes or edges.
    /// </summary>
    public interface IGraphFactory
    {

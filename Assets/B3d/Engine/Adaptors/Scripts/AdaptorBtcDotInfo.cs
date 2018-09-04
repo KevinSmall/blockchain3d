@@ -467,7 +467,7 @@ namespace B3d.Engine.Adaptors
          {
             // Request was OK, what is the response like?
             string s = uwr.downloadHandler.text;
-            Msg.Log("AdaptorBtcDotInfo.ProcessUwr call returned: " + s);
+            // Msg.Log("AdaptorBtcDotInfo.ProcessUwr call returned: " + s.Substring(0,60) + "...";);
             var N = JSON.Parse(s);
             if (N == null)
             {

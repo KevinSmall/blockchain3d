@@ -222,6 +222,11 @@ Prefab:
       propertyPath: GraphFactoryGO
       value: 
       objectReference: {fileID: 1332593230}
+    - target: {fileID: 114642532995814732, guid: fa96d1fdbc466b04f8fa37debdc1ef7f,
+        type: 2}
+      propertyPath: ChosenAdaptor
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa96d1fdbc466b04f8fa37debdc1ef7f, type: 2}
   m_IsPrefabParent: 0

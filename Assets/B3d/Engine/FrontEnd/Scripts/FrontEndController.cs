@@ -13,13 +13,14 @@
 
 using B3d.Engine.Cdm;
 using B3d.Tools;
+using System;
 using UnityEngine;
 
 namespace B3d.Engine.FrontEnd
 {
    /// <summary>
-   /// Handles UI and sends requests to either the Adaptor or the Cdm pool
-   /// Listens to Cdm pool for new nodes and creates game objects for them by calling graph factory, attaching visuals and physics
+   /// Handles UI and sends requests to the Cdm pool. Listens to Cdm pool for new nodes and creates
+   /// game objects for them by calling graph factory, attaching visuals and physics
    /// </summary>
    public class FrontEndController : MonoBehaviour
    {
@@ -65,6 +66,16 @@ namespace B3d.Engine.FrontEnd
 
          // Listen to Cdm events
          CdmCore.OnCdmPoolRequestFulfilled += OnCdmPoolGraphAdded;
+      }
+      
+      public void CheckAddressExists(string id, Action<string> callbackOnSuccess, Action<string> callbackOnFail)
+      {
+         CdmCore.CheckNodeExistsInSource(id, NodeType.Addr, callbackOnSuccess, callbackOnFail);
+      }
+      
+      public void CheckTransactionExists(string id, Action<string> callbackOnSuccess, Action<string> callbackOnFail)
+      {
+         CdmCore.CheckNodeExistsInSource(id, NodeType.Tx, callbackOnSuccess, callbackOnFail);
       }
 
       public void GetAddressData(string id, int page)

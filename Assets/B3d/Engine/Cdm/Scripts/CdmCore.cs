@@ -46,6 +46,15 @@ namespace B3d.Engine.Cdm
 
       #region UI-Facing Methods
       /// <summary>
+      /// Check existence of a node in the underlying source data, specifying a nodeType
+      /// The nodeId is passed back as a string in the callbacks
+      /// </summary>
+      public void CheckNodeExistsInSource(string nodeId, NodeType nodeType, Action<string> callbackOnSuccess, Action<string> callbackOnFail)
+      {
+         _adaptorSelector.GetChosenAdaptor().CheckNodeExists(nodeId, nodeType, callbackOnSuccess, callbackOnFail);
+      }
+
+      /// <summary>
       /// Get (request) a graph fragment: the node requested, the edges requested, and the nodes at the end of each edge, and add them 
       /// to CdmPool. Success means data pushed to Cdm and it will be raising events, the callback on fail is not essential, if anything
       /// fails then just nothing new will appear in the Cdm

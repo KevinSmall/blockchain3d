@@ -460,7 +460,7 @@ namespace B3d.Engine.Adaptors
             }
             else
             {
-               Msg.Log("AdaptorBtcOfflineFiles.ProcessRequestUsingFiles: TAddr " + r.NodeId + " does not exist in offline store");
+               Msg.Log("AdaptorBtcOfflineFiles.ProcessRequestUsingFiles: Addr " + r.NodeId + " does not exist in offline store");
                callbackOnFail(r.NodeId);
                return;
             }
