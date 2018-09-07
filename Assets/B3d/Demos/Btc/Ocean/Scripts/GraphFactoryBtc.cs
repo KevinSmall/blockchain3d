@@ -235,7 +235,9 @@ namespace B3d.Demos
 
       private void UpdateExistingNodeGoData(GameObject nodeExistingGo, CdmNodeBtc nodeNewBtc)
       {
-         // TODO What might need updated?
+         Msg.Log("GraphFactory.UpdateExistingNodeGoData is refreshing node data");
+
+         // TODO What might need updated? Since Cdm handles merges, it seems safe enough to overwrite whole object.
          GraphNodeBrain bnb = nodeExistingGo.GetComponent<GraphNodeBrain>();
          if (bnb != null)
          {
@@ -246,7 +248,8 @@ namespace B3d.Demos
       private void UpdateExistingEdgeGoData(GameObject edgeExistingGo, CdmEdgeBtc edgeNewBtc)
       {
          Msg.Log("GraphFactory.UpdateExistingEdgeGoData is refreshing edge data");
-                  
+
+         // TODO What might need updated? Since Cdm handles merges, it seems safe enough to overwrite whole object.
          GraphEdgeBrain blb = edgeExistingGo.GetComponent<GraphEdgeBrain>();
          if (blb != null)
          {

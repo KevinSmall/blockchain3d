@@ -111,7 +111,7 @@ namespace B3d.Engine.Adaptors
          string u = null;
          if (nodeType == NodeType.Addr)
          {
-            // https://blockchain.info/rawaddr/3CD1QW6fjgTwKq3Pj97nty28WZAVkziNom?cors=true&limit=20&api_code=
+            // https://blockchain.info/rawaddr/3CD1QW6fjgTwKq3Pj97nty28WZAVkziNom?cors=true&limit=20&offset=0&api_code=
             u = ApiUriRootForAddr;
             u = u + nodeId + "?cors=true";
             //u = u + "&limit=1" + "&offset=0";
@@ -167,13 +167,19 @@ namespace B3d.Engine.Adaptors
          //------------------------------------------------------------------------------------------------
          // address tx in this batch received
          var txs = N["txs"];
-         Msg.Log("AdaptorBtcOfflineFiles.PayloadGetAddr has found:" + txs.Count + " transactions attached to the address " + addr);
+         Msg.Log("AdaptorBtcDotInfo.PayloadGetAddr has found:" + txs.Count + " transactions attached to the address " + addr);
 
          int edgeCounter = r.EdgeCountFrom;
 
          for (int i = 0; i < txs.Count; i++)
          {
             var txBody = txs[i];
+
+            // Tx can contain multiple inputs (and outputs?) from the SAME source address (basically each UTXO from the source address)
+            // we have to aggregate across these unspent tx outputs
+            AdaptorHelpers.CompressTxInputs(txBody);
+            AdaptorHelpers.CompressTxOutputs(txBody);
+
             var txId = txs[i]["hash"];
             var inputs = txs[i]["inputs"];
             var outputs = txs[i]["out"];
@@ -183,7 +189,7 @@ namespace B3d.Engine.Adaptors
             var vinSize = txs[i]["vin_sz"];
             var voutSize = txs[i]["vout_sz"];
             int totalInputsOutputs = 0;
-            // defensively calc total inputs plus outputs
+            // defensively calc total inputs p lus outputs
             try
             {
                totalInputsOutputs = (int)vinSize + (int)voutSize;
@@ -280,8 +286,13 @@ namespace B3d.Engine.Adaptors
          CdmGraph g = new CdmGraphBtc() { GraphId = "Graph for " + r.NodeType + " " + r.NodeId };
 
          // Extract JSON
-         // these var are all JSONNodes
          var N = n;
+         // Tx can contain multiple inputs or outputs from the SAME source address (basically each UTXO from the source address)
+         // we have to aggregate across these unspent txoutputs
+         AdaptorHelpers.CompressTxInputs(N);
+         AdaptorHelpers.CompressTxOutputs(N);
+
+         // these var are all JSONNodes
          var txHash = N["hash"];
          var inputs = N["inputs"];
          var outputs = N["out"];
@@ -349,7 +360,7 @@ namespace B3d.Engine.Adaptors
             {
                NodeId = inputAddr,
                NodeType = NodeType.Addr,
-               NodeEdgeCountTotal = 0, // not knwon
+               NodeEdgeCountTotal = 0, // not known
                FinalBalance = 0,       // none of this stuff known yet
                TotalReceived = 0,
                TotalSent = 0

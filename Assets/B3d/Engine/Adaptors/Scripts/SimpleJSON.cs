@@ -131,10 +131,10 @@ var i = N["data"]["sampleArray"][1].AsInt;     // i will be an integer containin
 N["data"]["sampleArray"][1].AsInt = i+6;       // the second value in sampleArray will contain "11"
 
 N["additional"]["second"]["name"] = "FooBar";  // this will create a new object named "additional" in this object create another
-                                             //object "second" in this object add a string variable "name"
+                                               //object "second" in this object add a string variable "name"
 
 var mCount = N["countries"]["germany"]["moronCount"].AsInt; // this will return 0 and create all the required objects and
-                                                          // initialize "moronCount" with 0.
+                                                            // initialize "moronCount" with 0.
 
 if (N["wrong"] != null)                        // this won't execute the if-statement since "wrong" doesn't exist
 {}

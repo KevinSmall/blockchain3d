@@ -179,6 +179,129 @@ namespace B3d.Engine.Adaptors
       }
 
       /// <summary>
+      /// A tx can contain multiple inputs or outputs from the SAME source address (basically each unspent transaction
+      /// output UTXO from the source address). This method aggregates across these unspent tx outputs, summarising the tx
+      /// to just have one input per address.
+      /// Critically, this method must see an ENTIRE tx in one go (no paging), but that is fine because eg blockchain.info always
+      /// sends tx in one go, it is only addresses that it pages.
+      /// </summary>
+      /// <param name="N">A whole tx in JSONNode format, this gets changed in-situ</param>
+      public static void CompressTxInputs(JSONNode N)
+      {
+         var inputs = N["inputs"];
+         //var outputs = N["out"];         
+         if (inputs.Count == 0)
+         {
+            return;
+         }
+         
+         // Dict to hold the aggregation
+         Dictionary<string, float> aggr;         
+         aggr = new Dictionary<string, float>();
+         float valueSoFar = 0f;
+         
+         // loop inputs
+         for (int i = 0; i < inputs.Count; i++)
+         {  
+            var inputAddr = inputs[i]["prev_out"]["addr"];
+            var inputValue = inputs[i]["prev_out"]["value"];
+            float inputValueF = (float)inputValue; // note satoshis // / 100000f; // mBTC
+                                   
+            if (aggr.TryGetValue(inputAddr, out valueSoFar))
+            {
+               // aggregate the value there already
+               aggr[inputAddr] = valueSoFar + inputValueF;
+               // flag this entry for deletion
+               inputs[i]["script"].Value = "DELETEME";
+            }
+            else
+            {
+               // create a new dict entry
+               aggr.Add(inputAddr, inputValueF);
+               // note dont flag this for deletion, we store final aggr value here soon
+            }          
+         }
+
+         // write back the aggregated values
+         float valueAggr = 0f;
+         for (int i = 0; i < inputs.Count; i++)
+         {
+            if (inputs[i]["script"].Value != "DELETEME")
+            {
+               var inputAddr = inputs[i]["prev_out"]["addr"];
+               if (aggr.TryGetValue(inputAddr, out valueAggr))
+               {
+                  inputs[i]["prev_out"]["value"] = valueAggr;
+               }
+            }
+         }        
+
+         // delete the DELETME inputs
+         RemoveTheDeleteMeNodes(N);
+
+         N["vin_sz"] = inputs.Count;
+      }
+
+      /// <summary>
+      /// See comment for CompressTxInputs - I dont think this applies to outputs, but there is no harm in checking.
+      /// </summary>
+      /// <param name="N"></param>
+      public static void CompressTxOutputs(JSONNode N)
+      {
+         var outputs = N["out"];
+         if (outputs.Count == 0)
+         {
+            return;
+         }
+
+         // Dict to hold the aggregation
+         Dictionary<string, float> aggr;
+         aggr = new Dictionary<string, float>();
+         float valueSoFar = 0f;
+
+         // loop outputs
+         for (int i = 0; i < outputs.Count; i++)
+         {
+            var outputAddr = outputs[i]["addr"];
+            var outputValue = outputs[i]["value"];
+            float outputValueF = (float)outputValue; // note satoshis // / 100000f; // mBTC
+
+            if (aggr.TryGetValue(outputAddr, out valueSoFar))
+            {
+               // aggregate the value there already
+               aggr[outputAddr] = valueSoFar + outputValueF;
+               // flag this entry for deletion
+               outputs[i]["script"].Value = "DELETEME";
+            }
+            else
+            {
+               // create a new dict entry
+               aggr.Add(outputAddr, outputValueF);
+               // note dont flag this for deletion, we store final aggr value here soon
+            }
+         }
+
+         // write back aggregated values
+         float valueAggr = 0f;
+         for (int i = 0; i < outputs.Count; i++)
+         {
+            if (outputs[i]["script"].Value != "DELETEME")
+            {
+               var outputAddr = outputs[i]["addr"];
+               if (aggr.TryGetValue(outputAddr, out valueAggr))
+               {
+                  outputs[i]["value"] = valueAggr;
+               }
+            }
+         }         
+
+         // delete the DELETME inputs
+         RemoveTheDeleteMeNodes(N);
+
+         N["vout_sz"] = outputs.Count;
+      }
+
+      /// <summary>
       /// Remove the input and output address entries that have script = DELETEME
       /// </summary>
       /// <param name="N"></param>

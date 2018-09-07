@@ -153,5 +153,84 @@ namespace B3d.Engine.Cdm
             }
          }
       }
+
+      /// <summary>
+      /// Adding a node to a Btc graph can do the following if the node already exists:
+      ///   1) not add the new node, instead update the existing node's data 
+      /// </summary>
+      public override void AddNode(CdmNode n)
+      {
+         #region Data Quality Checks
+         CdmNodeBtc nbNew = n as CdmNodeBtc;
+         if (nbNew == null)
+         {
+            Msg.LogError("CdmGraphBtc.AddNode cannot cast edge to CdmNodeBtc");
+            return;
+         }
+         #endregion
+
+         CdmNodeBtc nbExisting = FindNodeById(nbNew.NodeId) as CdmNodeBtc;
+         if (nbExisting == null)
+         {
+            // New node, just add to list
+            _nodes.Add(nbNew);
+         }
+         else
+         {
+            // Node exists in graph already, merge in any previously unknown data
+            MergeExistingNode(nbNew, nbExisting);
+         }
+      }
+
+      /// <summary>
+      /// Merge data from incoming node nbNew into existing node nbExisting, updating the existing node.
+      /// </summary>
+      private void MergeExistingNode(CdmNodeBtc nbNew, CdmNodeBtc nbExisting)
+      {
+         float fsmall = 0.000001f;
+
+         // Addresses
+         if (nbExisting.NodeType == NodeType.Addr)
+         {
+            if (nbExisting.FinalBalance <= fsmall && nbNew.FinalBalance > fsmall)
+            {
+               nbExisting.FinalBalance = nbNew.FinalBalance;
+            }
+            if (nbExisting.TotalReceived <= fsmall && nbNew.TotalReceived > fsmall)
+            {
+               nbExisting.TotalReceived = nbNew.TotalReceived;
+            }
+            if (nbExisting.TotalSent <= fsmall && nbNew.TotalSent > fsmall)
+            {
+               nbExisting.TotalSent = nbNew.TotalSent;
+            }
+         }
+         // Transactions
+         else if (nbExisting.NodeType == NodeType.Tx)
+         {
+            // TODO the date gets defaulted at creation time if it is blank, can't tell if we should overwrite
+
+            if (nbExisting.BlockHeight == 0 && nbNew.BlockHeight > 0)
+            {
+               nbExisting.BlockHeight = nbNew.BlockHeight;
+            }
+
+            if (string.IsNullOrEmpty(nbExisting.RelayedBy) && !string.IsNullOrEmpty(nbNew.RelayedBy))
+            {
+               nbExisting.RelayedBy = nbNew.RelayedBy;
+            }
+
+            if (nbExisting.VoutSize == 0 && nbNew.VoutSize > 0)
+            {
+               nbExisting.VoutSize = nbNew.VoutSize;
+            }
+
+            if (nbExisting.VinSize == 0 && nbNew.VinSize > 0)
+            {
+               nbExisting.VinSize = nbNew.VinSize;
+            }
+
+         }
+      }
    }
 }
