@@ -189,7 +189,17 @@ namespace B3d.Engine.Cdm
       {
          float fsmall = 0.000001f;
 
-         // Addresses
+         // Attributes common to all node types
+         if (nbExisting.NodeEdgeCountTotal == 0)
+         {
+            nbExisting.NodeEdgeCountTotal = nbNew.NodeEdgeCountTotal;
+         }
+         if (nbExisting.Value <= fsmall && nbNew.Value > fsmall)
+         {
+            nbExisting.Value = nbNew.Value;
+         }
+      
+         // Attributes just for Addresses
          if (nbExisting.NodeType == NodeType.Addr)
          {
             if (nbExisting.FinalBalance <= fsmall && nbNew.FinalBalance > fsmall)
@@ -205,7 +215,7 @@ namespace B3d.Engine.Cdm
                nbExisting.TotalSent = nbNew.TotalSent;
             }
          }
-         // Transactions
+         // Attributes just for Transactions
          else if (nbExisting.NodeType == NodeType.Tx)
          {
             // TODO the date gets defaulted at creation time if it is blank, can't tell if we should overwrite

@@ -340,7 +340,7 @@ namespace B3d.Demos
       /// Refresh UI, whatever it may be (VR text or screen space or whatever)
       /// Position it in space correctly.
       /// </summary>
-      private void RefreshUI()
+      public void RefreshUI()
       {
          RefreshUiValues();
 

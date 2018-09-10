@@ -81,7 +81,7 @@ namespace B3d.Demos
             Destroy(gameObject);
          }
       }
-            
+
       void IGraphFactory.CreateOrUpdateNode(CdmNode nodeNew)
       {
          CdmNodeBtc nodeNewBtc = nodeNew as CdmNodeBtc;
@@ -91,6 +91,9 @@ namespace B3d.Demos
          if (_graphIndex.TryGetValue(nodeNewBtc.NodeId, out nodeExistingGo))
          {
             UpdateExistingNodeGoData(nodeExistingGo, nodeNewBtc);
+
+            Msg.Log("GraphFactory.CreateOrUpdateNode: Node refreshed: " + nodeExistingGo.gameObject.name + " at " + nodeExistingGo.gameObject.transform.position);
+
             return;
          }
 
@@ -104,31 +107,14 @@ namespace B3d.Demos
             nodeNode.name = nodeNewBtc.NodeId;
             nodeNode.Text = name;
 
-            GraphNodeBrain bnb = nodeNode.GetComponent<GraphNodeBrain>();
-            if (bnb != null)
-            {
-               bnb.CdmNodeBtc = nodeNewBtc;
-               bnb.NodeType = nodeNewBtc.NodeType;
-               bnb.ValueMBtc = nodeNewBtc.Value;
-               bnb.TotalEdges = nodeNewBtc.NodeEdgeCountTotal;
-               bnb.Id = nodeNewBtc.NodeId;
-               bnb.TxDate = nodeNewBtc.CreateDate;
-               bnb.BlockHeight = nodeNewBtc.BlockHeight;
-               bnb.RelayedBy = nodeNewBtc.RelayedBy;
+            UpdateExistingNodeGoData(nodeCreated, nodeNewBtc);
 
-               // Special case for first ever created node
-               if (!GlobalData.Instance.FirstNodeCreatedYet)
-               {
-                  GlobalData.Instance.FirstNodeCreatedYet = true;
-                  bnb.SetFirstEverCreated();
-               }
-            }
-            Msg.Log("GraphFactory.GenerateNode: Node created: " + nodeCreated.gameObject.name + " at " + nodeCreated.gameObject.transform.position);
+            Msg.Log("GraphFactory.CreateOrUpdateNode: Node created: " + nodeCreated.gameObject.name + " at " + nodeCreated.gameObject.transform.position);
             _graphIndex.Add(nodeNewBtc.NodeId, nodeCreated);
          }
          else
          {
-            Msg.LogWarning("GraphFactory.GenerateNode: Something went wrong, no node created.");
+            Msg.LogWarning("GraphFactory.CreateOrUpdateNode: Something went wrong, no node created.");
             return;
          }
 
@@ -173,10 +159,10 @@ namespace B3d.Demos
          else
          {
             Msg.Log("GraphFactory.GenerateEdge: Edge created: " + createdEdge.gameObject.name);
-            GraphEdgeBrain blb = createdEdge.GetComponent<GraphEdgeBrain>();
-            if (blb != null)
+            GraphEdgeBrain geb = createdEdge.GetComponent<GraphEdgeBrain>();
+            if (geb != null)
             {
-               blb.CdmEdgeBtc = edgeNewBtc;
+               geb.CdmEdgeBtc = edgeNewBtc;
             }
 
             // index it
@@ -235,13 +221,27 @@ namespace B3d.Demos
 
       private void UpdateExistingNodeGoData(GameObject nodeExistingGo, CdmNodeBtc nodeNewBtc)
       {
-         Msg.Log("GraphFactory.UpdateExistingNodeGoData is refreshing node data");
-
-         // TODO What might need updated? Since Cdm handles merges, it seems safe enough to overwrite whole object.
-         GraphNodeBrain bnb = nodeExistingGo.GetComponent<GraphNodeBrain>();
-         if (bnb != null)
+         GraphNodeBrain gnb = nodeExistingGo.GetComponent<GraphNodeBrain>();
+         if (gnb != null)
          {
-            bnb.CdmNodeBtc = nodeNewBtc;
+            gnb.CdmNodeBtc = nodeNewBtc;
+            gnb.NodeType = nodeNewBtc.NodeType;
+            gnb.ValueMBtc = nodeNewBtc.FinalBalance;
+            gnb.TotalEdges = nodeNewBtc.NodeEdgeCountTotal;
+            gnb.Id = nodeNewBtc.NodeId;
+            gnb.TxDate = nodeNewBtc.CreateDate;
+            gnb.BlockHeight = nodeNewBtc.BlockHeight;
+            gnb.RelayedBy = nodeNewBtc.RelayedBy;
+
+            // Special case for first ever created node
+            if (!GlobalData.Instance.FirstNodeCreatedYet)
+            {
+               GlobalData.Instance.FirstNodeCreatedYet = true;
+               gnb.SetFirstEverCreated();
+            }
+
+            // Update UI text els with the new GraphNodeBrain values
+            gnb.RefreshUI();
          }
       }
 
@@ -316,15 +316,15 @@ namespace B3d.Demos
       private static void UpdateLinkCountersOnSourceAndTarget(GameObject source, GameObject target)
       {
          // update link counters on source and target
-         GraphNodeBrain bnbSource = source.GetComponent<GraphNodeBrain>();
-         GraphNodeBrain bnbTarget = target.GetComponent<GraphNodeBrain>();
-         if (bnbSource != null)
+         GraphNodeBrain gnbSource = source.GetComponent<GraphNodeBrain>();
+         GraphNodeBrain gnbTarget = target.GetComponent<GraphNodeBrain>();
+         if (gnbSource != null)
          {
-            bnbSource.CurrentLinksIncrement();
+            gnbSource.CurrentLinksIncrement();
          }
-         if (bnbTarget != null)
+         if (gnbTarget != null)
          {
-            bnbTarget.CurrentLinksIncrement();
+            gnbTarget.CurrentLinksIncrement();
          }
       }
 

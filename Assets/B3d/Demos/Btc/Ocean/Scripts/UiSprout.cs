@@ -50,13 +50,13 @@ namespace B3d.Demos
          //foreach (Transform child in NodeFolder.transform)
          //{
          //      // might be a node, might be a link
-         //      GraphNodeBrain bnb = child.GetComponent<GraphNodeBrain>();
-         //   if (bnb != null)
+         //      GraphNodeBrain gnb = child.GetComponent<GraphNodeBrain>();
+         //   if (gnb != null)
          //   {
-         //      if (bnb.BitNodeType == GraphNodeBrain.AddrIncomplete || bnb.BitNodeType == BitNodeType.TxIncomplete)
+         //      if (gnb.BitNodeType == GraphNodeBrain.AddrIncomplete || gnb.BitNodeType == BitNodeType.TxIncomplete)
          //      {
          //         // We are a sproutable node
-         //         _nodesSproutable.Add(bnb);
+         //         _nodesSproutable.Add(gnb);
          //      }
          //   }
          //}
