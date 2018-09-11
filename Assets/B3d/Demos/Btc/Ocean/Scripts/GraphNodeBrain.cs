@@ -460,7 +460,7 @@ namespace B3d.Demos
                   _bitHudElements.mBtcValue.text = ValueMBtc.ToString("n2");
                   _bitHudElements.DateLabel.text = "Date:";
                   _bitHudElements.DateValue.text = TxDate.ToString("d", DateTimeFormatInfo.InvariantInfo);
-                  _bitHudElements.InfoLabel.text = "All addresses shown";
+                  _bitHudElements.InfoLabel.text = "All transactions shown";
                }
                else
                {
@@ -495,7 +495,7 @@ namespace B3d.Demos
                   _bitHudElements.mBtcValue.text = ValueMBtc.ToString("n2");
                   _bitHudElements.DateLabel.text = String.Empty;
                   _bitHudElements.DateValue.text = String.Empty;
-                  _bitHudElements.InfoLabel.text = "Click addr. for more links";
+                  _bitHudElements.InfoLabel.text = "All addresses shown";
                }
                else
                {
@@ -511,7 +511,7 @@ namespace B3d.Demos
                   _bitHudElements.mBtcValue.text = ValueMBtc.ToString("n2");
                   _bitHudElements.DateLabel.text = String.Empty;
                   _bitHudElements.DateValue.text = String.Empty;
-                  _bitHudElements.InfoLabel.text = "All transactions shown";
+                  _bitHudElements.InfoLabel.text = "Click addr. for more links";
                }
                break;
 
