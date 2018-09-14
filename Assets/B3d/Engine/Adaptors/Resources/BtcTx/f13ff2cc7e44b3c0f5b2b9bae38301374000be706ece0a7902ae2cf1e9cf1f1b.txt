@@ -1,0 +1,53 @@
+
+
+{
+   "ver":1,
+   "inputs":[
+      {
+         "sequence":4294967295,
+         "witness":"",
+         "prev_out":{
+            "spent":true,
+            "tx_index":349453453,
+            "type":0,
+            "addr":"18cjbpBwjM4MaykvnscBYP3ZoraH442pUS",
+            "value":442582,
+            "n":1,
+            "script":"76a914538b0002399c02ce65631d6ac12b8c4e8225a06e88ac"
+         },
+         "script":"483045022100b9424f913a2c529ae822548a879f38481f80277608769b68e7b3dd71d7f623f00220185f869b4cd02f8a21566037486826f7308a0d1f6c93154a3ed3c43680da58d5012103e30f2da0a02cc94d8ce7307a9eb52347f8df2cfe0db6064976fdac88ff25e13d"
+      }
+   ],
+   "weight":904,
+   "block_height":523889,
+   "relayed_by":"127.0.0.1",
+   "out":[
+      {
+         "spent":true,
+         "tx_index":349867148,
+         "type":0,
+         "addr":"1XPTgDRhN8RFnzniWCddobD9iKZatrvH4",
+         "value":1980,
+         "n":0,
+         "script":"76a91405bf3a3aea6335a3949c0a351ff3afcba884e12588ac"
+      },
+      {
+         "spent":true,
+         "tx_index":349867148,
+         "type":0,
+         "addr":"16yQ7RfxBXqNpZeUAparNkfMET7fPtwynE",
+         "value":439472,
+         "n":1,
+         "script":"76a914418336f5d4f846a046b26381c1f9fee5cbe8348a88ac"
+      }
+   ],
+   "lock_time":0,
+   "size":226,
+   "double_spend":false,
+   "time":1527013512,
+   "tx_index":349867148,
+   "vin_sz":1,
+   "hash":"f13ff2cc7e44b3c0f5b2b9bae38301374000be706ece0a7902ae2cf1e9cf1f1b",
+   "vout_sz":2
+}
+

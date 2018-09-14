@@ -75,6 +75,18 @@ namespace B3d.Engine.Adaptors
          }
          return 0f;
       }
+      
+      /// <summary>
+      /// Address data can be sent in a paged format from blockchain.info. If we're reading/writing this data
+      /// to file we need to work out the filename. The filename is constructed from the address plus
+      /// the from-to range of edges it contains. This is used by adaptor AdaptorBtcDotInfo during recording
+      /// and adaptor AdaptorBtcOfflineFiles during offline reads.
+      /// </summary>
+      /// <returns>For example "33bz...sDCc_e1_to_e8.txt"</returns>
+      public static string GetFilenameForAddressRequest(CdmRequest r)
+      {
+          return r.NodeId + "_e" + r.EdgeCountFrom.ToString() + "_to_e" + r.EdgeCountTo.ToString() + ".txt";
+      }
 
       /// <summary>
       /// Take the incoming tx and split it into a list of paged partial tx.
@@ -179,7 +191,7 @@ namespace B3d.Engine.Adaptors
       }
 
       /// <summary>
-      /// A tx can contain multiple inputs or outputs from the SAME source address (basically each unspent transaction
+      /// A tx can contain multiple inputs from the SAME source address (basically each unspent transaction
       /// output UTXO from the source address). This method aggregates across these unspent tx outputs, summarising the tx
       /// to just have one input per address.
       /// Critically, this method must see an ENTIRE tx in one go (no paging), but that is fine because eg blockchain.info always

@@ -15,6 +15,7 @@ using B3d.Engine.Cdm;
 using B3d.Tools;
 using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -33,6 +34,14 @@ namespace B3d.Engine.Adaptors
       public string ApiUriRootForAddr = "https://blockchain.info/rawaddr/";
       [Tooltip("Root URI for transaction data")]
       public string ApiUriRootForTx = "https://blockchain.info/rawtx/";
+
+      [Header("Record Results of API calls")]
+      [Tooltip("Set true to record raw results of API calls to file")]
+      public bool RecordToFileOn = false;
+      [Tooltip("Files are stored in this folder for Addresses (use trailing /)")]
+      public string RecordToFileFolderAddr = @"Assets/B3d/Engine/Adaptors/Resources/BtcAddress/";
+      [Tooltip("Files are stored in this folder for Tx (use trailing /)")]
+      public string RecordToFileFolderTx = @"Assets/B3d/Engine/Adaptors/Resources/BtcTx/";
 
       Family IAdaptor.GetFamily()
       {
@@ -487,6 +496,8 @@ namespace B3d.Engine.Adaptors
             }
             else
             {
+               RecordToFile(r, s);
+
                // For the request r, launch the payload against the JSON Node N that we got back from the blockchain.info API
                bool payloadProcessingWasOk = payload(r, N);
                if (payloadProcessingWasOk)
@@ -502,10 +513,34 @@ namespace B3d.Engine.Adaptors
          }
       }
 
+      private void RecordToFile(CdmRequest r, string s)
+      {
+         if (!RecordToFileOn)
+         {
+            return;
+         }
+         
+         string filepath;         
+         if (r.NodeType == NodeType.Addr)
+         {
+            // Addr can be paged
+            filepath = RecordToFileFolderAddr + AdaptorHelpers.GetFilenameForAddressRequest(r);
+         }
+         else
+         {
+            // Tx are never paged, we get all of it in one go from blockchain.info
+            filepath = RecordToFileFolderTx + r.NodeId + @".txt";
+         }
+         
+         using (StreamWriter wr = new StreamWriter(filepath))
+         {
+            wr.WriteLine(s);
+         }
+      }
+
       /// <summary>
       /// Empty call back
       /// </summary>
       private void CallBackDummy(string s) { }
-
    }
 }

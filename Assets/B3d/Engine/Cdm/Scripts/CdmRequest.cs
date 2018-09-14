@@ -15,7 +15,7 @@ namespace B3d.Engine.Cdm
 {
    /// <summary>
    /// A CdmRequest is a request by a frontend for some graph data.
-   /// It constists of a node, a certain number of edges from that node, plus all the nodes at the end of the edges 
+   /// It consists of a node, a certain number of edges from that node, plus all the nodes at the end of the edges 
    /// </summary>
    public class CdmRequest
    {

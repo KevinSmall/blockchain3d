@@ -132,7 +132,7 @@ namespace B3d.Engine.FrontEnd
 
       private void OnGetNodeFailed(string s)
       {
-         Msg.LogWarning("FrontEndController called GetNode for " + s + " but the call failed");
+         Msg.LogWarning("FrontEndController called GetNode but the call failed. Reason: " + s);
       }
    }
 }

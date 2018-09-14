@@ -2300,7 +2300,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1825457186046076, guid: 98d6845839bb6184db062ae7c095c720, type: 2}
       propertyPath: m_Name
-      value: AdaptorBtc
+      value: AdaptorCollection
       objectReference: {fileID: 0}
     - target: {fileID: 114558650411292016, guid: 98d6845839bb6184db062ae7c095c720,
         type: 2}

@@ -41,11 +41,11 @@ namespace B3d.Demos
       /// <summary>
       /// If no address or tx provided in GlobalData, or "random" addr tx is asked for, use this and its companion below
       /// </summary>
-      public string StartupTxFallBack01 = "00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592";
+      public string StartupTxFallBack01 = "a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d"; // ths pizza tx
       /// <summary>
       /// If no address or tx provided in GlobalData, or "random" addr tx is asked for, use this and its companion above
       /// </summary>
-      public string StartupTxFallBack02 = "0fbf2d16605c10dbdec919fafd6f9e5060c33e2838127d9a13af3671fef25316";
+      public string StartupTxFallBack02 = "00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592"; //pizza tx
 
       private bool _monoscopicWithHeadTracking = false;
 

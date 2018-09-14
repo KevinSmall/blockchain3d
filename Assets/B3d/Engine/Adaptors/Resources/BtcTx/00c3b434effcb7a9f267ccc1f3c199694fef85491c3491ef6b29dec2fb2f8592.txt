@@ -1,42 +1,53 @@
+
+
 {
-    "lock_time" : 0,
-    "ver" : 1,
-    "block_height" : 471291,
-    "size" : 334,
-    "inputs" : [ {
-      "sequence" : 4294967295,
-      "prev_out" : {
-        "spent" : true,
-        "tx_index" : 260546547,
-        "type" : 0,
-        "addr" : "33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc",
-        "value" : 4905440588,
-        "n" : 1,
-        "script" : "a91414fccedf3b0d6fbcd295dc767c9b6d888b95b8e087"
+   "ver":1,
+   "inputs":[
+      {
+         "sequence":4294967295,
+         "witness":"",
+         "prev_out":{
+            "spent":true,
+            "tx_index":260546547,
+            "type":0,
+            "addr":"33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc",
+            "value":4905440588,
+            "n":1,
+            "script":"a91414fccedf3b0d6fbcd295dc767c9b6d888b95b8e087"
+         },
+         "script":"00473044022024f644158f6d4aab3ca67785de992934fb5357b143ded0aaf48e72634e15369002203eff51e3cdb1c824ab0fe9cbb3fbe0ea74f6dc5f1c5463826f8b4333996aa5490147304402204529c2ff830b7cb78a6ef8202bfa311921c7541f2ff036a01906d5aab03cf46b02203f2d4a794f0c79c549165e131c8034fce6e5444736a88c427c967f3b111c27ee0147522102bebebd5b41169305b2c09773d10bfd720bbd798264e4da1f5f62131b6f872eb621039fa7f4a8d08993464435c63f3710413a315b2d4d81b78cfbb8dfa744030561c852ae"
+      }
+   ],
+   "weight":1336,
+   "block_height":471291,
+   "relayed_by":"173.254.235.34",
+   "out":[
+      {
+         "spent":true,
+         "tx_index":260549661,
+         "type":0,
+         "addr":"1E3WQKHMcZwcFexVHnhwsx6NkLAMmizToG",
+         "value":1678000,
+         "n":0,
+         "script":"76a9148f1302ba46fbabeee70cc857d3a107aab78b6ab588ac"
       },
-      "script" : "00473044022024f644158f6d4aab3ca67785de992934fb5357b143ded0aaf48e72634e15369002203eff51e3cdb1c824ab0fe9cbb3fbe0ea74f6dc5f1c5463826f8b4333996aa5490147304402204529c2ff830b7cb78a6ef8202bfa311921c7541f2ff036a01906d5aab03cf46b02203f2d4a794f0c79c549165e131c8034fce6e5444736a88c427c967f3b111c27ee0147522102bebebd5b41169305b2c09773d10bfd720bbd798264e4da1f5f62131b6f872eb621039fa7f4a8d08993464435c63f3710413a315b2d4d81b78cfbb8dfa744030561c852ae"
-    } ],
-    "time" : 1497473328,
-    "tx_index" : 260549661,
-    "vin_sz" : 1,
-    "hash" : "00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592",
-    "vout_sz" : 2,
-    "relayed_by" : "173.254.235.34",
-    "out" : [ {
-      "spent" : false,
-      "tx_index" : 260549661,
-      "type" : 0,
-      "addr" : "1E3WQKHMcZwcFexVHnhwsx6NkLAMmizToG",
-      "value" : 1678000,
-      "n" : 0,
-      "script" : "76a9148f1302ba46fbabeee70cc857d3a107aab78b6ab588ac"
-    }, {
-      "spent" : false,
-      "tx_index" : 260549661,
-      "type" : 0,
-      "addr" : "33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc",
-      "value" : 4903656712,
-      "n" : 1,
-      "script" : "a91414fccedf3b0d6fbcd295dc767c9b6d888b95b8e087"
-    } ]
-  }
+      {
+         "spent":true,
+         "tx_index":260549661,
+         "type":0,
+         "addr":"33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc",
+         "value":4903656712,
+         "n":1,
+         "script":"a91414fccedf3b0d6fbcd295dc767c9b6d888b95b8e087"
+      }
+   ],
+   "lock_time":0,
+   "size":334,
+   "double_spend":false,
+   "time":1497473328,
+   "tx_index":260549661,
+   "vin_sz":1,
+   "hash":"00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592",
+   "vout_sz":2
+}
+

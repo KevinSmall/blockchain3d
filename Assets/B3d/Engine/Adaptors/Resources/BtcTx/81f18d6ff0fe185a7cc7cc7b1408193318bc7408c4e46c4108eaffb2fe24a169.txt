@@ -1,0 +1,54 @@
+
+
+{
+   "ver":1,
+   "inputs":[
+      {
+         "sequence":4294967293,
+         "witness":"",
+         "prev_out":{
+            "spent":true,
+            "tx_index":332655368,
+            "type":0,
+            "addr":"1GAYJEWCGDaY1FbSfdD8W9Qzevu14UJTX6",
+            "value":35810,
+            "n":1,
+            "script":"76a914a657c184ae6200c4f3301d485991aea73dd121f688ac"
+         },
+         "script":"483045022100f5fb585c495e53701ec161e2645ed4d7e4679366ff7c44c88e305a22bdc9933b022004dc599c0a64f0337ba815ecf0a5f2a2eaa73c1b0591939ee5ac104bbc4ab09001410474b066f3a86699b8b6551b889c04880decd5d8087f684600cf7eee31ccfc59c8a1c07da64bc6793eed7b497b64659eaa1a048898b61ffd351a4dda742f845165"
+      }
+   ],
+   "weight":1032,
+   "block_height":510531,
+   "relayed_by":"0.0.0.0",
+   "out":[
+      {
+         "spent":true,
+         "tx_index":332653754,
+         "type":0,
+         "addr":"1XPTgDRhN8RFnzniWCddobD9iKZatrvH4",
+         "value":690,
+         "n":0,
+         "script":"76a91405bf3a3aea6335a3949c0a351ff3afcba884e12588ac"
+      },
+      {
+         "spent":true,
+         "tx_index":332653754,
+         "type":0,
+         "addr":"1GAYJEWCGDaY1FbSfdD8W9Qzevu14UJTX6",
+         "value":34346,
+         "n":1,
+         "script":"76a914a657c184ae6200c4f3301d485991aea73dd121f688ac"
+      }
+   ],
+   "lock_time":510492,
+   "size":258,
+   "rbf":true,
+   "double_spend":false,
+   "time":1519358631,
+   "tx_index":332653754,
+   "vin_sz":1,
+   "hash":"81f18d6ff0fe185a7cc7cc7b1408193318bc7408c4e46c4108eaffb2fe24a169",
+   "vout_sz":2
+}
+

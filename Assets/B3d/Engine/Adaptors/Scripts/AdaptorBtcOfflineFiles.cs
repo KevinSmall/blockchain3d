@@ -20,7 +20,11 @@ using UnityEngine;
 namespace B3d.Engine.Adaptors
 {
    /// <summary>
-   /// Implementation of a Btc Adaptor that gets its data from files in Unity Resources folders
+   /// Implementation of a Btc Adaptor that gets its data from files in Unity Resources folders.
+   /// Resource files get compiled into a unity resource file at build time, and lose their file extension.
+   /// Address can be paged over many files. For the purposes of identifying address pages in _offlineAddresses
+   /// we assume all asset files have a .txt extension, so it matches AdaptorHelpers.GetFilenameForAddressRequest()
+   /// which is used when the offline addresses files are recorded by AdaptorBtcDotInfo.
    /// </summary>
    public class AdaptorBtcOfflineFiles : Adaptor, IAdaptorBtc
    {
@@ -450,6 +454,7 @@ namespace B3d.Engine.Adaptors
 
          // does tx or addr exist in the files we loaded?
          string s = null;
+         string addressKey = null;
          if (r.NodeType == NodeType.Tx)
          {
             if (_offlineTxs.ContainsKey(r.NodeId))
@@ -459,20 +464,22 @@ namespace B3d.Engine.Adaptors
             else
             {
                Msg.Log("AdaptorBtcOfflineFiles.ProcessRequestUsingFiles: Tx " + r.NodeId + " does not exist in offline store");
-               callbackOnFail(r.NodeId);
+               callbackOnFail("Data not available in offline store.");
                return;
             }
          }
          else if (r.NodeType == NodeType.Addr)
          {
-            if (_offlineAddresses.ContainsKey(r.NodeId))
-            {
-               s = _offlineAddresses[r.NodeId];
+            // Addresses handled differently because they can be paged, and exist across multiple files
+            addressKey = AdaptorHelpers.GetFilenameForAddressRequest(r);
+            if (_offlineAddresses.ContainsKey(addressKey))
+            {               
+               s = _offlineAddresses[addressKey];
             }
             else
             {
-               Msg.Log("AdaptorBtcOfflineFiles.ProcessRequestUsingFiles: Addr " + r.NodeId + " does not exist in offline store");
-               callbackOnFail(r.NodeId);
+               Msg.Log("AdaptorBtcOfflineFiles.ProcessRequestUsingFiles: AddressKey " + addressKey + " does not exist in offline store");
+               callbackOnFail("Data not available in offline store.");
                return;
             }
          }
@@ -513,12 +520,10 @@ namespace B3d.Engine.Adaptors
          UnityEngine.Object[] texts = Resources.LoadAll(ResourcesSubfolderForAddr);
          foreach (var t in texts)
          {
-            //Debug.Log("README T.NAME " + t.name);
-            TextAsset ta = t as TextAsset;
-            //Debug.Log("README TA.NAME " + ta.name);
+            TextAsset ta = t as TextAsset;          
             try
             {
-               _offlineAddresses.Add(t.name, ta.text);
+               _offlineAddresses.Add(t.name + ".txt", ta.text);
             }
             catch (ArgumentException)
             {
