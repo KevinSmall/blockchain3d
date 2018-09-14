@@ -10,10 +10,10 @@ public class MinimalGraphFactory : MonoBehaviour, IGraphFactory
       Debug.Log("Edge received: " + edgeNew.EdgeIdFriendly);
    }
 
-   void IGraphFactory.CreateOrUpdateNode(CdmNode nodeNew)
+   void IGraphFactory.CreateOrUpdateNode(CdmNode nodeNew, Vector3 location)
    {
       // nodeNew contains all the interesting data about a node (an address or a transaction)
-      Debug.Log("Node received: " + nodeNew.NodeType + " " + nodeNew.NodeId);
+      Debug.Log("Node received: " + nodeNew.NodeType + " " + nodeNew.NodeId + " to be created near: " + location);
    }
 
    void Start()

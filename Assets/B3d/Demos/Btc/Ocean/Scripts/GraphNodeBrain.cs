@@ -529,14 +529,14 @@ namespace B3d.Demos
       {
          _edgesPageCount += 1; // assume success (allows multiple clicks on node to queue up incoming data and it should work ok)
          Debug.Log("GraphNodeBrain is requesting address data for: " + Id + " page " + _edgesPageCount);
-         FrontEndController.Instance.GetAddressData(Id, _edgesPageCount);  // fire and forget
+         FrontEndController.Instance.GetAddressData(Id, _edgesPageCount, gameObject.transform.position);  // fire and forget
       }
 
       public void RequestTxData()
       {
          _edgesPageCount += 1; // assume success (allows multiple clicks on node to queue up incoming data and it should work ok)
          Debug.Log("GraphNodeBrain is requesting tx data for: " + Id + " page " + _edgesPageCount);
-         FrontEndController.Instance.GetTransactionData(Id, _edgesPageCount);  // fire and forget
+         FrontEndController.Instance.GetTransactionData(Id, _edgesPageCount, gameObject.transform.position);  // fire and forget
       }
 
       /// Called when the user is looking on a GameObject with this script,

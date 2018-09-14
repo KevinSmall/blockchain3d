@@ -82,7 +82,7 @@ namespace B3d.Demos
          }
       }
 
-      void IGraphFactory.CreateOrUpdateNode(CdmNode nodeNew)
+      void IGraphFactory.CreateOrUpdateNode(CdmNode nodeNew, Vector3 location)
       {
          CdmNodeBtc nodeNewBtc = nodeNew as CdmNodeBtc;
 
@@ -98,7 +98,10 @@ namespace B3d.Demos
          }
 
          GameObject nodeCreated = null;
-         Vector3 createPos = GetRandomPos();
+         Vector3 createPos = GetRandomPosNear(location);
+
+         Msg.LogWarning("created near:" + location);
+
          nodeCreated = InstantiateNode(createPos, nodeNewBtc.NodeType);
 
          if (nodeCreated != null)

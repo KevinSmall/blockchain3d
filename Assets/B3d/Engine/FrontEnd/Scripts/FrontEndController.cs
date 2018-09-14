@@ -78,20 +78,36 @@ namespace B3d.Engine.FrontEnd
          CdmCore.CheckNodeExistsInSource(id, NodeType.Tx, callbackOnSuccess, callbackOnFail);
       }
 
-      public void GetAddressData(string id, int page)
+      /// <summary>
+      /// Sends a request to the Cdm for the given address and page. Optionally a world space location can be added
+      /// which will be available in the returned request. Method OnCdmPoolGraphAdded() is called when request
+      /// is fullfilled
+      /// </summary>
+      /// <param name="id">Address id</param>
+      /// <param name="page">Page of data</param>
+      /// <param name="location">Optional locaation in world space that this will be near</param>
+      public void GetAddressData(string id, int page, Vector3 location = default(Vector3))
       {
          int edgeCountFrom = 0;
          int edgeCountTo = 0;
          CdmHelpers.GetFromToForPage(PageSize, page, out edgeCountFrom, out edgeCountTo);
-         CdmCore.GetGraphFragment(id, NodeType.Addr, edgeCountFrom, edgeCountTo, OnGetNodeFailed);
+         CdmCore.GetGraphFragment(id, NodeType.Addr, edgeCountFrom, edgeCountTo, OnGetNodeFailed, location);
       }
 
-      public void GetTransactionData(string id, int page)
+      /// <summary>
+      /// Sends a request to the Cdm for the given tx and page. Optionally a world space location can be added
+      /// which will be available in the returned request. Method OnCdmPoolGraphAdded() is called when request
+      /// is fullfilled
+      /// </summary>
+      /// <param name="id">Tx id</param>
+      /// <param name="page">Page of data</param>
+      /// <param name="location">Optional locaation in world space that this will be near</param>
+      public void GetTransactionData(string id, int page, Vector3 location = default(Vector3))
       {
          int edgeCountFrom = 0;
          int edgeCountTo = 0;
          CdmHelpers.GetFromToForPage(PageSize, page, out edgeCountFrom, out edgeCountTo);
-         CdmCore.GetGraphFragment(id, NodeType.Tx, edgeCountFrom, edgeCountTo, OnGetNodeFailed);
+         CdmCore.GetGraphFragment(id, NodeType.Tx, edgeCountFrom, edgeCountTo, OnGetNodeFailed, location);
       }
 
       private void OnCdmPoolGraphAdded(object sender, CdmPoolEventArgs args)
@@ -111,10 +127,12 @@ namespace B3d.Engine.FrontEnd
          }
 
          // Create nodes and edges
+         Vector3 location = args.CdmRequest.WorldLocation;
+
          foreach (CdmNode n in gb.GetAllNodes())
          {
             CdmNodeBtc nb = n as CdmNodeBtc;
-            GraphFactory.CreateOrUpdateNode(nb);
+            GraphFactory.CreateOrUpdateNode(nb, location);
          }
 
          foreach (CdmEdge e in gb.GetAllEdges())

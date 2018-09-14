@@ -12,6 +12,7 @@
 // GNU General Public License for more details.
 
 using B3d.Engine.Cdm;
+using UnityEngine;
 
 namespace B3d.Engine.FrontEnd
 {
@@ -21,7 +22,17 @@ namespace B3d.Engine.FrontEnd
    /// </summary>
    public interface IGraphFactory
    {
-      void CreateOrUpdateNode(CdmNode nodeNew);
+      /// <summary>
+      /// Create a new, or update an existing, node. Optionally a locaiton may be present, if the frontend stored it when request created.
+      /// </summary>
+      /// <param name="nodeNew">All the info about the node (cast to appropriate subclass to see details)</param>
+      /// <param name="location">Optional location given by frontend when request originally made</param>
+      void CreateOrUpdateNode(CdmNode nodeNew, Vector3 location = default(Vector3));
+
+      /// <summary>
+      /// Create a new, or update an existing, edge. 
+      /// </summary>
+      /// <param name="edgeNew">All the info about the edge (cast to appropriate subclass to see details)</param>      
       void CreateOrUpdateEdge(CdmEdge edgeNew);
    }
 }

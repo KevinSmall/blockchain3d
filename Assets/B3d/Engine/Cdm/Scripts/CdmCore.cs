@@ -28,7 +28,7 @@ namespace B3d.Engine.Cdm
       /// </summary>
       public event EventHandler<CdmPoolEventArgs> OnCdmPoolRequestFulfilled = delegate { };
 
-      [Info("Cdm stands for Common Data Model. This component receives data from the specified adaptor and stores it in a common data structure." + 
+      [Info("Cdm stands for Common Data Model. This component receives data from the specified adaptor and stores it in a common data structure." +
          " This component receives requests for data from the frontend and raises events when new data is received. It also provides a graph cache.")]
       /// <summary>
       /// GameObject carrying an IAdaptor interface
@@ -59,7 +59,13 @@ namespace B3d.Engine.Cdm
       /// to CdmPool. Success means data pushed to Cdm and it will be raising events, the callback on fail is not essential, if anything
       /// fails then just nothing new will appear in the Cdm
       /// </summary>
-      public void GetGraphFragment(string nodeId, NodeType nodeType, int edgeCountFrom, int edgeCountTo, Action<string> callbackOnFail)
+      /// <param name="nodeId">Id of address or tx</param>
+      /// <param name="nodeType">Address or tx</param>
+      /// <param name="edgeCountFrom">Edge counts starts at 1</param>
+      /// <param name="edgeCountTo">Edge count to</param>
+      /// <param name="callbackOnFail">Callback will be executed if the adaptor fails to provide the data</param>
+      /// <param name="location">Optionally can record the approximate location of graph root in frontend, used by frontend only not Cdm</param>
+      public void GetGraphFragment(string nodeId, NodeType nodeType, int edgeCountFrom, int edgeCountTo, Action<string> callbackOnFail, Vector3 location = default(Vector3))
       {
          if (edgeCountTo < edgeCountFrom)
          {
@@ -69,7 +75,14 @@ namespace B3d.Engine.Cdm
          }
 
          // Build Request
-         CdmRequest r = new CdmRequest() { NodeId = nodeId, NodeType = nodeType, EdgeCountFrom = edgeCountFrom, EdgeCountTo = edgeCountTo };
+         CdmRequest r = new CdmRequest()
+         {
+            NodeId = nodeId,
+            NodeType = nodeType,
+            EdgeCountFrom = edgeCountFrom,
+            EdgeCountTo = edgeCountTo,
+            WorldLocation = location
+         };
 
          // Can CdmPool fulfill the request in its entirety? This means we dont even need to ask adaptor for data
          CdmGraph g = CanCdmPoolFulfillRequest(r, true);
@@ -149,12 +162,12 @@ namespace B3d.Engine.Cdm
          {
             return null;
          }
-         
+
          int edgesAskedForCount = r.EdgeCountTo - r.EdgeCountFrom + 1;
          int edgesFoundCount = 0;
          int endOfEdgeNodesAskedForCount = edgesAskedForCount;
          int endOfEdgeNodesFoundCount = 0;
-         
+
          // Add requested node to graph fragment we will send
          CdmGraph gFragment = CreateNewGraph(_adaptorSelector.GetChosenAdaptor().GetFamily());
          gFragment.AddNode(n);
@@ -164,7 +177,7 @@ namespace B3d.Engine.Cdm
          {
             // This searches both ways around, sender and receiver
             CdmEdge e = CdmPool.FindEdgeByNodeAndNumber(n.NodeId, i);
-            if ( e != null )
+            if (e != null)
             {
                // Store the edge
                edgesFoundCount++;
@@ -175,18 +188,18 @@ namespace B3d.Engine.Cdm
                gFragment.AddNode(eoen);
                endOfEdgeNodesFoundCount++;
             }
-         }         
+         }
 
          if (isPerfectMatchRequired)
          {
-              if (edgesFoundCount >= edgesAskedForCount && endOfEdgeNodesFoundCount >= endOfEdgeNodesAskedForCount)
-              {
-                 return gFragment;
-              }
-              else              
-              {
-                 return null;
-              }
+            if (edgesFoundCount >= edgesAskedForCount && endOfEdgeNodesFoundCount >= endOfEdgeNodesAskedForCount)
+            {
+               return gFragment;
+            }
+            else
+            {
+               return null;
+            }
          }
          else
          {
