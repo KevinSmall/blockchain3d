@@ -102,7 +102,7 @@ Contributions are very welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 * SimpleJSON code is by [Markus Göbel](https://github.com/Bunny83/SimpleJSON).
 * Some Force Directed Graph code is inspired by work from [Bamfax](https://github.com/Bamfax/ForceDirectedNodeGraph3DUnity).
 * Some camera control code came from [Jason Graves](http://www.collaboradev.com). 
-* The wonderful skybox in the Ocean sample (prominent in most every application screenshot!) was kindly provided by the most excellent people at [70-30.de](http://70-30.de/).
+* The wonderful skybox in the Ocean sample (prominent in most every application screenshot) was kindly provided by the most excellent people at [70-30.de](http://70-30.de/).
 
 # License
 All content licensed under [GNU GPL v3](./LICENSE) apart from:
