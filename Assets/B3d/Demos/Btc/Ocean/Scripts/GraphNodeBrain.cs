@@ -190,6 +190,47 @@ namespace B3d.Demos
          _shell = gameObject.transform.Find("Shell").gameObject;
       }
 
+      /// <summary>
+      /// Returns true if node can be automatically sprouted given the targetSproutDepth, false otherwise.
+      /// Example: if the targetSproutDepth is 4, it means we want to show 4 "hops" of edges and nodes from the graph's root (depth 0).
+      /// If this current node (the self) has depth 3 then we are eligible for auto-sprouting, with one possible exception: if current 
+      /// node has very many edges, we don't want to show them all, just a few is enough.
+      /// </summary>      
+      /// <param name="targetSproutDepth">Depth we'd like to display to</param>
+      /// <param name="enoughEdges">This is deemed to be "enough" edges to display in cases where are many</param>
+      public bool IsSproutable(int targetSproutDepth, int enoughEdges)
+      {
+         // Self node has unknown depth. This shouldn't happen(?) but to be safe and avoid infinite sprouting situations, we will treat these as not ok
+         if (CdmNodeBtc.Depth == -1)
+         {
+            return false;
+         }
+
+         // We are complete, so nothing else to sprout
+         if (_totalEdges > 0 && _currentEdges >= _totalEdges)
+         {
+            return false;
+         }
+
+         // Self node has depth matching or exceeding the target depth, so don't want to sprout it
+         if (CdmNodeBtc.Depth >= targetSproutDepth)
+         {
+            return false;
+         }
+
+         // If we reach here, the self node depth is known, and it is less than target depth
+         // Only remaining hurdle is if we have too many edges to display
+         // We don't actually care about _totalEdges any more, just how many we're displaying
+         if (_currentEdges < enoughEdges)
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      }
+
       public void CurrentLinksIncrement()
       {
          _currentEdges++;

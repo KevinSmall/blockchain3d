@@ -105,8 +105,8 @@ namespace B3d.Demos
             _adaptorSel.SetChosenAdaptor(AdaptorSelector.AvailableAdaptor.AdaptorBtcOfflineFiles);
 
             // Use the offline values
-            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);
-            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);
+            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);    // eg a107.. pizza
+            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);    // eg 00c3..
          }
          else if (GlobalData.Instance.OfflineTransactionDataRequested)
          {
@@ -117,8 +117,8 @@ namespace B3d.Demos
             
             // Use the "random" values provided to the component
             //FrontEndController.GetAddressData("17mjNZWa3LVXnpiewKae3VkWyDCqKwt7PV", 1);
-            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);
-            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);
+            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);   // eg a107.. pizza
+            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);   // eg 00c3..
          }
          else
          {
@@ -140,8 +140,8 @@ namespace B3d.Demos
                // We're supposed to receive pre-validated tx or address, not blanks
                // But let's startup anyway (we could be in editor play mode) with a known good start point
                Msg.LogWarning("StartUpController: Mode = Online, using default start...");
-               FrontEndController.GetTransactionData(StartupTxFallBack01, 1);
-               FrontEndController.GetTransactionData(StartupTxFallBack02, 1);
+               FrontEndController.GetTransactionData(StartupTxFallBack01, 1);  // eg a107.. pizza
+               FrontEndController.GetTransactionData(StartupTxFallBack02, 1);  // eg 00c3..
             }
          }
 

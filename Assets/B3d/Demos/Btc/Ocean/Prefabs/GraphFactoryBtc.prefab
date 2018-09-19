@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4334626553293778}
   - component: {fileID: 114515059414742502}
+  - component: {fileID: 114257410005435180}
   m_Layer: 0
   m_Name: GraphFactoryBtc
   m_TagString: Untagged
@@ -33,13 +34,27 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469186366368934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114257410005435180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1469186366368934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c0468366c121c479db0fc035de8fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoSproutDepth: 1
+  EnoughEdges: 32
+  SecondsBetweenSprouts: 2
 --- !u!114 &114515059414742502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,17 +83,17 @@ MonoBehaviour:
   LinkIntendedLinkLength: 2.8
   Visuals:
     NodeFadeInTimeSeconds: 1
-    ColLinkInput: {r: 0, g: 0, b: 1, a: 1}
-    ColLinkOutput: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    ColLinkMixed: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    ColLinkInput: {r: 0.13725491, g: 0.20392157, b: 0.6627451, a: 1}
+    ColLinkOutput: {r: 0.13725491, g: 0.20392157, b: 0.6627451, a: 1}
+    ColLinkMixed: {r: 0.13725491, g: 0.20392157, b: 0.6627451, a: 1}
     ColLinkDefault: {r: 1, g: 0, b: 1, a: 1}
     WidthLinkMin: 0.05
     WidthLinkDefault: 0.1
     WidthLinkMax: 0.2
     NodeInteractionSuppressTime: 1
     ColAddrGazeAt: {r: 1, g: 1, b: 1, a: 1}
-    ColNodeTxIncomplete: {r: 0, g: 0, b: 1, a: 1}
-    ColNodeTxComplete: {r: 0, g: 0, b: 1, a: 1}
+    ColNodeTxIncomplete: {r: 0.050980393, g: 0.39607844, b: 0.30588236, a: 1}
+    ColNodeTxComplete: {r: 0.10980392, g: 0.10980392, b: 0.49411765, a: 1}
     ColNodeAddrIncomplete: {r: 1, g: 0, b: 0, a: 1}
-    ColNodeAddrComplete: {r: 1, g: 0, b: 0, a: 1}
+    ColNodeAddrComplete: {r: 0.59607846, g: 0.09019608, b: 0.09019608, a: 1}
     ColNodeDefault: {r: 1, g: 0, b: 1, a: 1}

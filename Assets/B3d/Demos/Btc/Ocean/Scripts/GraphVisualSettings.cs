@@ -34,6 +34,7 @@ namespace B3d.Demos
       [Header("Addresses and Transactions")]
       [Tooltip("Nodes are non-interactable for this number of seconds after spawning")]
       public float NodeInteractionSuppressTime = 1f;
+
       [Tooltip("Color that addresses take on when gazed at")]
       public Color ColAddrGazeAt = Color.white;
       public Color ColNodeTxIncomplete = Color.blue;

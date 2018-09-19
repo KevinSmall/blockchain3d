@@ -1132,99 +1132,10 @@ Prefab:
       propertyPath: ParentFolder
       value: 
       objectReference: {fileID: 565570149}
-    - target: {fileID: 1469186366368934, guid: cc20b392bff15fa4a96cebe8c52ff7ff, type: 2}
-      propertyPath: m_Name
-      value: GraphFactoryBtc
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
+    - target: {fileID: 114257410005435180, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
         type: 2}
-      propertyPath: Visuals.ColLinkOutput.r
-      value: 0.13725491
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkOutput.g
-      value: 0.20392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkOutput.b
-      value: 0.6627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkMixed.r
-      value: 0.13725491
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkMixed.g
-      value: 0.20392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkMixed.b
-      value: 0.6627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxIncomplete.r
-      value: 0.050980393
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxIncomplete.g
-      value: 0.39607844
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxIncomplete.b
-      value: 0.30588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxComplete.r
-      value: 0.10980392
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxComplete.g
-      value: 0.10980392
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeTxComplete.b
-      value: 0.49411765
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkInput.r
-      value: 0.13725491
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkInput.g
-      value: 0.20392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColLinkInput.b
-      value: 0.6627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeAddrComplete.r
-      value: 0.59607846
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeAddrComplete.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
-        type: 2}
-      propertyPath: Visuals.ColNodeAddrComplete.b
-      value: 0.09019608
+      propertyPath: AutoSproutDepth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20b392bff15fa4a96cebe8c52ff7ff, type: 2}

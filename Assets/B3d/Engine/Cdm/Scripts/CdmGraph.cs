@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace B3d.Engine.Cdm
 {
@@ -24,6 +21,21 @@ namespace B3d.Engine.Cdm
       public virtual CdmNode FindNodeById(string nodeId)
       {
          return _nodes.Find(c => c.NodeId == nodeId);
+      }
+
+      public virtual void GetNodesAtEitherEndofEdge(string edgeId, out CdmNode n1, out CdmNode n2)
+      {
+         CdmEdge e = _edges.Find(c => (c.EdgeId == edgeId));
+         if (e != null)
+         {
+            n1 = FindNodeById(e.NodeTargetId);
+            n2 = FindNodeById(e.NodeSourceId);
+         }
+         else
+         {
+            n1 = null;
+            n2 = null;
+         }
       }
 
       /// <summary>
@@ -152,19 +164,6 @@ namespace B3d.Engine.Cdm
       public virtual List<CdmEdge> GetAllEdges()
       {
          return _edges;
-      }
-
-      public virtual void SetAllEdgesAndNodesAsSent()
-      {
-         foreach (CdmNode n in _nodes)
-         {
-            n.IsSentToView = true;
-         }
-
-         foreach (CdmEdge e in _edges)
-         {
-            e.IsSentToView = true;
-         }
       }
    }
 }

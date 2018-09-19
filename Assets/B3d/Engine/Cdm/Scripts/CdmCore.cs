@@ -14,6 +14,7 @@
 using B3d.Engine.Adaptors;
 using B3d.Tools;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace B3d.Engine.Cdm
@@ -84,7 +85,7 @@ namespace B3d.Engine.Cdm
             WorldLocation = location
          };
 
-         // Can CdmPool fulfill the request in its entirety? This means we dont even need to ask adaptor for data
+         // Can CdmPool fulfill the request in its entirety? This means we already have all data and dont even need to ask adaptor for data
          CdmGraph g = CanCdmPoolFulfillRequest(r, true);
          if (g != null && !r.IsCacheFillOnly)
          {
@@ -105,9 +106,6 @@ namespace B3d.Engine.Cdm
             Msg.LogWarning("CdmCore.RaiseOnCdmPoolRequestFulfilled was asked to raise pool change event for a null graph");
             return;
          }
-
-         // Flag all entries in the graph fragment as being sent to frontend
-         g.SetAllEdgesAndNodesAsSent();
 
          // Raise event for listeners
          CdmPoolEventArgs e = new CdmPoolEventArgs() { CdmRequest = r, CdmGraph = g };
@@ -132,10 +130,11 @@ namespace B3d.Engine.Cdm
          CdmPool.AddNodeRange(g.GetAllNodes());
          CdmPool.AddEdgeRange(g.GetAllEdges());
 
-         // Tell listeners, but only for edges that were requested in request r
+         // Add depth information and tell listeners, but only for edges that were requested in request r
          if (r != null && !r.IsCacheFillOnly)
          {
             CdmGraph gFragmentFromPool = CanCdmPoolFulfillRequest(r, false);
+            UpdateFragmentAddDepth(r, gFragmentFromPool);
             RaiseOnCdmPoolRequestFulfilled(r, gFragmentFromPool);
          }
          else
@@ -144,6 +143,66 @@ namespace B3d.Engine.Cdm
          }
       }
       #endregion
+
+      /// <summary>
+      /// Add depth values to the graph fragment
+      /// </summary>
+      private void UpdateFragmentAddDepth(CdmRequest r, CdmGraph gFragmentFromPool)
+      {
+         // a) node process: if request.node == node being inspected, and depth = -1, make depth 0. If depth = anything else, leave it alone.
+         // b) edge process: look at the nodes on either end of the edge (call them n1 and n2) and examine their depth values:
+         //      n1  n2
+         //      -1  -1  both unknown, should not happen, leave alone
+         //       0  -1  make the -1 = 1 (same case as below, order doesnt matter)
+         //      -1   X  make the -1 = X + 1 (same case as above, order doesnt matter)
+         //       X   Y  both known, leave alone
+
+         // a) Node process
+         List<CdmNode> nodes = gFragmentFromPool.GetAllNodes();
+         foreach (CdmNode n in nodes)
+         {
+            if (r.NodeId == n.NodeId)
+            {
+               if (n.Depth == -1)
+               {
+                  // the node we're looking at is the node that was asked for in the request. Now, if previously
+                  // we didn't know it's depth we know now that it must be the first requested node for this graph.
+                  n.Depth = 0;
+               }
+               break;
+            }
+         }
+
+         // b) Edge process
+         List<CdmEdge> edges = gFragmentFromPool.GetAllEdges();
+         foreach (CdmEdge e in edges)
+         {
+            CdmNode n1 = null;
+            CdmNode n2 = null;
+            gFragmentFromPool.GetNodesAtEitherEndofEdge(e.EdgeId, out n1, out n2);
+            if (n1.Depth == -1 && n2.Depth == -1)
+            {
+               // both unknown, shouldn't happen, just leave alone
+               Msg.LogWarning("CdmCore.UpdateFragmentAddDepth() has both nodes unknown depth for edge: " + e.EdgeId);
+            }
+            else if (n1.Depth != -1 || n2.Depth != -1)
+            {
+               // precisely one unknown, so now we know the other
+               if (n1.Depth == -1)
+               {
+                  n1.Depth = n2.Depth + 1;
+               }
+               else
+               {
+                  n2.Depth = n1.Depth + 1;
+               }
+            }
+            else
+            {
+               // both known, this is fine where we're just refreshing known values, so leave alone
+            }
+         }
+      }
 
       /// <summary>
       /// If the CdmPool can fulfill the request, return the graph fragment required, return null otherwise

@@ -27,7 +27,7 @@ namespace B3d.Engine.Cdm
 
       public string NodeSourceId;
       public string NodeTargetId;
-      public bool IsSentToView;
+ 
       /// <summary>
       /// Edge number as counted from source node's view, used in paging, zero means not yet known.
       /// </summary>

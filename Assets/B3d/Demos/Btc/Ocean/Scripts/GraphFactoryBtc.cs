@@ -69,7 +69,7 @@ namespace B3d.Demos
       {
          if (Instance == null)
          {
-            Msg.Log("GraphFactory created");
+            Msg.Log("GraphFactoryBtc created");
             Instance = this;
             _graphIndex = new Dictionary<string, GameObject>();
 
@@ -77,7 +77,7 @@ namespace B3d.Demos
          }
          else
          {
-            Msg.Log("GraphFactory re-creation attempted, destroying the new one");
+            Msg.LogWarning("GraphFactoryBtc re-creation attempted, destroying the new one");
             Destroy(gameObject);
          }
       }
@@ -100,7 +100,7 @@ namespace B3d.Demos
          GameObject nodeCreated = null;
          Vector3 createPos = GetRandomPosNear(location);
 
-         Msg.LogWarning("created near:" + location);
+         //Msg.LogWarning("created near:" + location);
 
          nodeCreated = InstantiateNode(createPos, nodeNewBtc.NodeType);
 
@@ -171,7 +171,6 @@ namespace B3d.Demos
             // index it
             _graphIndex.Add(edgeNewBtc.EdgeId, createdEdge);
          }
-
       }
 
       private GameObject InstantiateNode(Vector3 createPos, NodeType nodeType)
