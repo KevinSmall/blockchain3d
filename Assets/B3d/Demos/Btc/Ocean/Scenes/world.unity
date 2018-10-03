@@ -1135,7 +1135,7 @@ Prefab:
     - target: {fileID: 114257410005435180, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
         type: 2}
       propertyPath: AutoSproutDepth
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20b392bff15fa4a96cebe8c52ff7ff, type: 2}

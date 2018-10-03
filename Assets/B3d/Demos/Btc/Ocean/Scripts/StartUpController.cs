@@ -105,8 +105,7 @@ namespace B3d.Demos
             _adaptorSel.SetChosenAdaptor(AdaptorSelector.AvailableAdaptor.AdaptorBtcOfflineFiles);
 
             // Use the offline values
-            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);    // eg a107.. pizza
-            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);    // eg 00c3..
+            GetDefaultData();
          }
          else if (GlobalData.Instance.OfflineTransactionDataRequested)
          {
@@ -114,11 +113,9 @@ namespace B3d.Demos
             Msg.Log("StartupController: Mode = Online, random start position");
 
             _adaptorSel.SetChosenAdaptor(AdaptorSelector.AvailableAdaptor.AdaptorBtcDotInfo);
-            
+
             // Use the "random" values provided to the component
-            //FrontEndController.GetAddressData("17mjNZWa3LVXnpiewKae3VkWyDCqKwt7PV", 1);
-            FrontEndController.GetTransactionData(StartupTxFallBack01, 1);   // eg a107.. pizza
-            FrontEndController.GetTransactionData(StartupTxFallBack02, 1);   // eg 00c3..
+            GetDefaultData();
          }
          else
          {
@@ -140,27 +137,9 @@ namespace B3d.Demos
                // We're supposed to receive pre-validated tx or address, not blanks
                // But let's startup anyway (we could be in editor play mode) with a known good start point
                Msg.LogWarning("StartUpController: Mode = Online, using default start...");
-               FrontEndController.GetTransactionData(StartupTxFallBack01, 1);  // eg a107.. pizza
-               FrontEndController.GetTransactionData(StartupTxFallBack02, 1);  // eg 00c3..
+               GetDefaultData();
             }
          }
-
-         // Various tests  
-
-         // Tx
-         // CdmCore.GetGraphFragment("00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592", NodeType.Tx, 1, OnGetNodeFailed);
-         // OLDER CdmCore.GetGraphFragment("0fbf2d16605c10dbdec919fafd6f9e5060c33e2838127d9a13af3671fef25316", NodeType.Tx, 1, OnGetNodeFailed);
-
-         // this is a tx inside 17 nimja, on an addr that has input and output         
-         //CdmCore.GetGraphFragment("84f3ff57816950ec4eed0cb800182b91995ceb10effd422f74b1f3c063a1d6b0", NodeType.Tx, 1, OnGetNodeFailed);
-
-         // Addr
-         // [33 bees] is massive 42k tx, paged, the offline file is just up to 20
-         //CdmCore.GetGraphFragment("33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc", NodeType.Addr, 1, OnGetNodeFailed);
-
-         // [17 nimja]
-         //FrontEndController.GetAddressData("17mjNZWa3LVXnpiewKae3VkWyDCqKwt7PV", 1);
-         //_frontEndController.GetTransactionData("7f9dbf1518cc060c4d61cfb7ff5e717e75de7194388477c0af08ac1a1633e253", 1);
 
          if (GlobalData.Instance.CardboardAvailable && GlobalData.Instance.CardboardRequested)
          {
@@ -168,7 +147,23 @@ namespace B3d.Demos
             // copied from GVR demo manager
             Input.backButtonLeavesApp = true;
          }
+      }
 
+      /// <summary>
+      /// GEt default transaction or address data
+      /// </summary>
+      private void GetDefaultData()
+      {
+         FrontEndController.GetTransactionData(StartupTxFallBack01, 1);    // eg a107.. pizza
+         //FrontEndController.GetTransactionData(StartupTxFallBack02, 1);    // eg 00c3..
+
+         // Various tests  
+         // [TEST: 33 bees] is massive 42k tx, paged, the offline file is just up to 20
+         //FrontEndController.GetAddressData("33bzHo3UmE3eMtWb9VhztzH27t8DjXsDCc", NodeType.Addr, 1, OnGetNodeFailed);
+
+         // [TEST: 17 nimja]
+         //FrontEndController.GetAddressData("17mjNZWa3LVXnpiewKae3VkWyDCqKwt7PV", 1);
+         //FrontEndController.GetTransactionData("7f9dbf1518cc060c4d61cfb7ff5e717e75de7194388477c0af08ac1a1633e253", 1);
       }
 
       // Update is called once per frame
