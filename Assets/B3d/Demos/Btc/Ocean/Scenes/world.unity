@@ -1137,6 +1137,11 @@ Prefab:
       propertyPath: AutoSproutDepth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
+        type: 2}
+      propertyPath: Visuals.NodeFadeInTimeSeconds
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20b392bff15fa4a96cebe8c52ff7ff, type: 2}
   m_IsPrefabParent: 0
