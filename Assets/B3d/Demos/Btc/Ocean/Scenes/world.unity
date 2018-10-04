@@ -1157,6 +1157,16 @@ Prefab:
       propertyPath: Visuals.ColLinkMixed.a
       value: 0.50980395
       objectReference: {fileID: 0}
+    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
+        type: 2}
+      propertyPath: Visuals.WidthLinkMax
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
+        type: 2}
+      propertyPath: Visuals.WidthLinkDefault
+      value: 0.09
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc20b392bff15fa4a96cebe8c52ff7ff, type: 2}
   m_IsPrefabParent: 0

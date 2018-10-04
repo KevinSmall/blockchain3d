@@ -44,7 +44,7 @@ namespace B3d.Demos
       private EdgeType _bitLinkTypePrimary;
 
       public EdgeType CdmEdgeType;
-      
+
       /// <summary>
       /// In mixed link cases, this is the other type, and left null when there is only primary
       /// </summary>
@@ -163,10 +163,14 @@ namespace B3d.Demos
          // Fade in link
          StartCoroutine(FadeIn());
 
-         // Cheat "fade" for label
-         if (true)
+         // "Fade" for label, it just pops into existence after a delay
+         if (GlobalData.Instance.IsGlobalLinkLabelActive)
          {
             Invoke("CanvasEnable", GraphFactoryBtc.Instance.Visuals.NodeFadeInTimeSeconds);
+         }
+         else
+         {
+            CanvasDisable();
          }
       }
 
@@ -350,7 +354,7 @@ namespace B3d.Demos
       {
          // TYPE
          CdmEdgeType = cdmEdgeType;
-         
+
          //-- early outs
          // TYPE
          if (_bitLinkTypeSecondary != null)

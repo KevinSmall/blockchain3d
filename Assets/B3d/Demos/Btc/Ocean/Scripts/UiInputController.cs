@@ -92,14 +92,14 @@ namespace B3d.Demos
             {
                //Debug.Log("UiInputController: Toggle Labels: examine label: " + linkGo.name);
 
-               GraphEdgeBrain linkBrain = linkGo.GetComponent<GraphEdgeBrain>();
+               GraphEdgeBrain edgeBrain = linkGo.GetComponent<GraphEdgeBrain>();
                if (GlobalData.Instance.IsGlobalLinkLabelActive)
                {
-                  linkBrain.CanvasEnable();
+                  edgeBrain.CanvasEnable();
                }
                else
                {
-                  linkBrain.CanvasDisable();
+                  edgeBrain.CanvasDisable();
                }
             }
          }
