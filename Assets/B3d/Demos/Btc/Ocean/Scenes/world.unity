@@ -1135,7 +1135,7 @@ Prefab:
     - target: {fileID: 114257410005435180, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
         type: 2}
       propertyPath: AutoSproutDepth
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114515059414742502, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
         type: 2}
