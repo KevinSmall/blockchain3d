@@ -249,7 +249,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1849112084}
+        m_MethodName: OnAutoGrowDropdownEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &72788050
@@ -1217,7 +1228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.500008, y: -170.20001}
+  m_AnchoredPosition: {x: -8.5, y: -170.20001}
   m_SizeDelta: {x: -97.999985, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489307742
@@ -1980,11 +1991,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114571543206916482, guid: 951faff0d62772b4d9590ebdd9cffac3,
         type: 2}
-      propertyPath: Fader
-      value: 
-      objectReference: {fileID: 1821775312}
-    - target: {fileID: 114571543206916482, guid: 951faff0d62772b4d9590ebdd9cffac3,
-        type: 2}
       propertyPath: IAdaptorGO
       value: 
       objectReference: {fileID: 441660919}
@@ -2025,6 +2031,11 @@ Prefab:
       objectReference: {fileID: 564497327}
     - target: {fileID: 114571543206916482, guid: 951faff0d62772b4d9590ebdd9cffac3,
         type: 2}
+      propertyPath: AutoGrowDropdown
+      value: 
+      objectReference: {fileID: 72788049}
+    - target: {fileID: 114571543206916482, guid: 951faff0d62772b4d9590ebdd9cffac3,
+        type: 2}
       propertyPath: ConnectionLog
       value: 
       objectReference: {fileID: 1465920055}
@@ -2043,6 +2054,11 @@ Prefab:
       propertyPath: NewsText
       value: 
       objectReference: {fileID: 1929408526}
+    - target: {fileID: 114571543206916482, guid: 951faff0d62772b4d9590ebdd9cffac3,
+        type: 2}
+      propertyPath: Fader
+      value: 
+      objectReference: {fileID: 1821775312}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 951faff0d62772b4d9590ebdd9cffac3, type: 2}
   m_IsPrefabParent: 0
@@ -4879,7 +4895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 177.1, y: 1.8999939}
+  m_AnchoredPosition: {x: 177.10004, y: 1.8999939}
   m_SizeDelta: {x: 5.5999756, y: 47.10028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1970275299

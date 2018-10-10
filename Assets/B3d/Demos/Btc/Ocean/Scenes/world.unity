@@ -1175,6 +1175,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4334626553293778, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
     type: 2}
   m_PrefabInternal: {fileID: 1214196181}
+--- !u!114 &1214196183 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114257410005435180, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 1214196181}
+  m_Script: {fileID: 11500000, guid: 91c0468366c121c479db0fc035de8fd5, type: 3}
 --- !u!1 &1214196184 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1469186366368934, guid: cc20b392bff15fa4a96cebe8c52ff7ff,
@@ -1550,6 +1556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FrontEndController: {fileID: 209749729}
   IAdaptorGO: {fileID: 209749724}
+  GraphFactorySprout: {fileID: 1214196183}
   StartupTxFallBack01: a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d
   StartupTxFallBack02: 00c3b434effcb7a9f267ccc1f3c199694fef85491c3491ef6b29dec2fb2f8592
 --- !u!1 &1896970272

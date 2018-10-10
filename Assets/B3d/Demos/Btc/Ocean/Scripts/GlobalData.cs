@@ -46,6 +46,10 @@ namespace B3d.Demos
       public float FlipMouseYAxis = 1f;
       [Tooltip("Global flag, are labels active?")]
       public bool IsGlobalLinkLabelActive;
+      [Tooltip("To what depth should graph be auto-grown? Depth 1 means 1 edge from start node, 2 means 2 edges from start etc")]
+      public int AutoGrowDepth;
+      [Tooltip("Flag - has world scene been called by login screen?")]
+      public bool IsCalledByLoginScreen;
 
       void Awake()
       {

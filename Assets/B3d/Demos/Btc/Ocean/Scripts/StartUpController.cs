@@ -37,6 +37,12 @@ namespace B3d.Demos
       /// </summary>
       private AdaptorSelector _adaptorSel;
 
+      /// <summary>
+      /// The GraphFactorySprout script is passed the desired auto grow (sprout) depth
+      /// </summary>
+      [Tooltip("The GraphFactorySprout script is passed the desired auto grow (sprout) depth")]
+      public GraphFactorySprout GraphFactorySprout;
+
       [Header("Default Startup")]
       /// <summary>
       /// If no address or tx provided in GlobalData, or "random" addr tx is asked for, use this and its companion below
@@ -96,6 +102,12 @@ namespace B3d.Demos
       // Use this for initialization
       void Start()
       {
+         // Set auto grow depth
+         if (GlobalData.Instance.IsCalledByLoginScreen)
+         {
+            GraphFactorySprout.AutoSproutDepth = GlobalData.Instance.AutoGrowDepth;
+         }
+
          // Use adaptor selector to choose appropriate adaptor, according to the settings written to the control panel runtime by the login screen
          if (GlobalData.Instance.OfflineAddressDataRequested && GlobalData.Instance.OfflineTransactionDataRequested)
          {

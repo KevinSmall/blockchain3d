@@ -65,7 +65,7 @@ namespace B3d.Demos
 
       public Toggle OptionA_View3d;
       public Toggle OptionA_ViewVr;
-
+      public Dropdown AutoGrowDropdown;
       public Text ConnectionLog;
       public Text Instructions;
       public Button ButtonLetsGo;
@@ -79,9 +79,14 @@ namespace B3d.Demos
       public Image Fader;
 
       /// <summary>
-      /// For storing player prefs
+      /// For storing player prefs for addr or tx default
       /// </summary>
       private const string c_addr_or_tx_value = "addr_or_tx_value";
+
+      /// <summary>
+      /// For storing player prefs for auto grow depth
+      /// </summary>
+      private const string c_auto_grow_Depth = "auto_grow_depth";
 
       /// <summary>
       /// connection log displayed on gui
@@ -158,6 +163,7 @@ namespace B3d.Demos
 
          // Try to get stored value
          InputField_AddrTx.text = PlayerPrefs.GetString(c_addr_or_tx_value, "");
+         AutoGrowDropdown.value = PlayerPrefs.GetInt(c_auto_grow_Depth, 0); // index 0 means depth 1
 
          // Any remote settings?
          if (NewsText != null)
@@ -258,6 +264,12 @@ namespace B3d.Demos
          PlayerPrefs.SetString(c_addr_or_tx_value, InputField_AddrTx.text);
       }
 
+      public void OnAutoGrowDropdownEnded()
+      {
+         // after edit ends, store value
+         PlayerPrefs.SetInt(c_auto_grow_Depth, AutoGrowDropdown.value);
+      }
+
       // for the button that looks like a label next to toggle grp 1, option C
       public void OnToggle1_OptionC_ShowOff_ButtonPress()
       {
@@ -319,6 +331,11 @@ namespace B3d.Demos
             GlobalData.Instance.CardboardAvailable = _cardboardAvailable;
             GlobalData.Instance.CardboardRequested = true;
          }
+
+         // Auto grow depth
+         GlobalData.Instance.AutoGrowDepth = AutoGrowDropdown.value + 1; // index 0 means depth 1 etc, so add one
+
+         GlobalData.Instance.IsCalledByLoginScreen = true;
 
          // Go
          if (letsGoApproved)

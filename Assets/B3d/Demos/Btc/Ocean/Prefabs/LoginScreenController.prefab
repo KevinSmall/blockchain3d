@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc07c74da94ea64491451fe4efd79d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsRunImmediatelySkipGui: 0
-  Fader: {fileID: 0}
   IAdaptorGO: {fileID: 0}
   SceneToLoadWhenFinished: world
   LabelVersion: {fileID: 0}
@@ -62,7 +60,9 @@ MonoBehaviour:
   OptionC_ShowOff: {fileID: 0}
   OptionA_View3d: {fileID: 0}
   OptionA_ViewVr: {fileID: 0}
+  AutoGrowDropdown: {fileID: 0}
   ConnectionLog: {fileID: 0}
   Instructions: {fileID: 0}
   ButtonLetsGo: {fileID: 0}
   NewsText: {fileID: 0}
+  Fader: {fileID: 0}
