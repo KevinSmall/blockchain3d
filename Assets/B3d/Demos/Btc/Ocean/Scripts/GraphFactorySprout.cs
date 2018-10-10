@@ -15,7 +15,7 @@ namespace B3d.Demos
       /// The start node defaults to showing 1 layer of edges deeper at startup. Increase this to have graph grow automatically.
       /// </summary>
       [Tooltip("The start node defaults to showing 1 layer of edges deeper at startup. Increase this to have graph grow automatically.")]
-      [RangeAttribute(1, 3)]
+      [RangeAttribute(1, 5)]
       public int AutoSproutDepth = 1;
 
       /// <summary>
@@ -23,7 +23,7 @@ namespace B3d.Demos
       /// to get a feel for the shape. This number of edges is deemed "enough" in this case.
       /// </summary>
       [Tooltip("Some nodes have 100s or 1000s of edges. If automatic sprouting is on, we don't necessarily want to display all, just enough to get a feel for the shape.")]
-      public int EnoughEdges = 32;
+      public int EnoughEdges = 48;
 
       [Tooltip("Delay in seconds between sprouts")]
       public float SecondsBetweenSprouts = 2f;
