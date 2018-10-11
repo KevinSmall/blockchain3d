@@ -110,6 +110,12 @@ namespace B3d.Demos
             GraphFactoryBtc.Instance.AllStatic = !GraphFactoryBtc.Instance.AllStatic;
          }
 
+         // Toggle Auto Grow
+         if (Input.GetKeyDown(KeyCode.G))
+         {
+            GraphFactorySprout.Instance.IsAutoGrowActive = !GraphFactorySprout.Instance.IsAutoGrowActive;
+         }
+
          // Toggle Mouse
          if (Input.GetKeyDown(KeyCode.M))
          {

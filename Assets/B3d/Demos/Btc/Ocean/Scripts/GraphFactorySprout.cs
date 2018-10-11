@@ -14,9 +14,17 @@ namespace B3d.Demos
       /// <summary>
       /// The start node defaults to showing 1 layer of edges deeper at startup. Increase this to have graph grow automatically.
       /// </summary>
-      [Tooltip("The start node defaults to showing 1 layer of edges deeper at startup. Increase this to have graph grow automatically.")]
+      [Tooltip("The start node defaults to showing 1 layer of edges deeper at startup. Increase this to have graph grow automatically. 3 works well, 5 may cause poor performance.")]
       [RangeAttribute(1, 5)]
       public int AutoSproutDepth = 1;
+
+      public static GraphFactorySprout Instance;
+
+      [Tooltip("Runtime flag if auto grow is switched on or not. The default at startup is always on.")]
+      /// <summary>
+      /// Runtime flag if auto grow is switched on or not. The default at startup is always on.
+      /// </summary>
+      public bool IsAutoGrowActive = true;
 
       /// <summary>
       /// Some nodes have 100s or 1000s of edges. If automatic sprouting is on, we don't necessarily want to display all, just enough
@@ -34,10 +42,25 @@ namespace B3d.Demos
 
       private void Awake()
       {
+         // Singleton
+         if (Instance == null)
+         {
+            Msg.Log("GraphFactorySprout created");
+            Instance = this;
+            //DontDestroyOnLoad(gameObject);
+         }
+         else
+         {
+            Msg.LogWarning("GraphFactorySprout re-creation attempted, destroying the new one");
+            Destroy(gameObject);
+         }
+
+         // Find graph factory
          GraphFactoryBtc gfb = GetComponent<GraphFactoryBtc>();
          if (gfb == null)
          {
             Msg.LogWarning("GraphFactorySprout could not find GraphFactory component - no nodes will sprout");
+            IsAutoGrowActive = false;
          }
          else
          {
@@ -50,11 +73,17 @@ namespace B3d.Demos
       void Start()
       {
          _timer = SecondsBetweenSprouts;
+         IsAutoGrowActive = true;
       }
 
       // Update is called once per frame
       void Update()
       {
+         if (!IsAutoGrowActive)
+         {
+            return;
+         }
+
          _timer -= Time.deltaTime;
          if (_timer < 0f)
          {
@@ -90,9 +119,8 @@ namespace B3d.Demos
          if (!didSproutHappen)
          {
             // We are done, can switch off sprouting
-            // TODO could disable component?
             Msg.Log("GraphFactorySprout is switching itself off, there are no sproutable nodes left.");
-            SecondsBetweenSprouts = 3600f;
+            IsAutoGrowActive = false;
          }
       }
    }
