@@ -36,6 +36,9 @@ namespace B3d.Demos
       [Tooltip("Delay in seconds between sprouts")]
       public float SecondsBetweenSprouts = 2f;
 
+      [Tooltip("Auto sprout will switch itself off in offline demo mode")]
+      public float AutoSproutMaxLifeInOfflineDemo = 30f;
+
       private List<GraphNodeBrain> _nodesSproutable;
       private float _timer;
       private Transform _nodeFolder;
@@ -84,11 +87,23 @@ namespace B3d.Demos
             return;
          }
 
+         // Delay between sprouts
          _timer -= Time.deltaTime;
          if (_timer < 0f)
          {
             _timer = SecondsBetweenSprouts;
             DoSprout();
+         }
+
+         // In offline demos we want to force sprout off
+         if (GlobalData.Instance.OfflineTransactionDataRequested == true && GlobalData.Instance.OfflineAddressDataRequested == true)
+         {
+            AutoSproutMaxLifeInOfflineDemo -= Time.deltaTime;
+            if (AutoSproutMaxLifeInOfflineDemo < 0f)
+            {
+               Msg.Log("GraphFactorySprout is switching itself off as we are in an offline demo and max time has passed.");
+               IsAutoGrowActive = false;
+            }
          }
       }
 
