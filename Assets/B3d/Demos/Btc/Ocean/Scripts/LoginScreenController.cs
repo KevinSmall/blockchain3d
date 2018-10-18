@@ -116,7 +116,7 @@ namespace B3d.Demos
       private bool _cardboardAvailable = false;
 
       // Instructions displayed on screen
-      private const string c_inst_standalone = "Use mouse and keys WASD to fly around. Use keys QE to float up and down, L to toggle labels, P to toggle physics, G to toggle auto-grow, M to toggle mouse invert, Esc key to toggle free mouse. Look at an address (cube) or transaction (sphere) and click to see more links.";
+      private const string c_inst_standalone = "Use mouse and keys WASD to fly. Use keys QE to float up down, L to toggle labels, P to toggle physics, G to toggle auto-grow, M to toggle mouse invert, Esc key to toggle free mouse. Look at an address (cube) or transaction (sphere) and click to see more links.";
       private const string c_inst_phone_3d = "Move device around to look around the world. Gaze at an address (cube) or transaction (sphere) and single tap to see more links from it. Gaze at empty space and tap to float in that direction. Double tap to stop floating.";
       private const string c_inst_phone_vr = "Look around the world at addresses (cubes) and transactions (spheres). Gaze at an address or transaction and single tap to see more links from it. Gaze at empty space and single tap to float in that direction. Double tap to stop floating.";
 
@@ -163,7 +163,7 @@ namespace B3d.Demos
 
          // Try to get stored value
          InputField_AddrTx.text = PlayerPrefs.GetString(c_addr_or_tx_value, "");
-         AutoGrowDropdown.value = PlayerPrefs.GetInt(c_auto_grow_Depth, 0); // index 0 means depth 1
+         AutoGrowDropdown.value = PlayerPrefs.GetInt(c_auto_grow_Depth, 2); // index 2 means depth 3, a fair default I think
 
          // Any remote settings?
          if (NewsText != null)

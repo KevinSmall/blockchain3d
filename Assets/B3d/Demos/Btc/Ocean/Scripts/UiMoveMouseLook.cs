@@ -92,7 +92,9 @@ namespace B3d.Demos
       {
          // Make the rigid body not change rotation
          if (GetComponent<Rigidbody>())
+         {
             GetComponent<Rigidbody>().freezeRotation = true;
+         }
          originalRotation = transform.localRotation;
       }
 
