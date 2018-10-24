@@ -1944,6 +1944,11 @@ Prefab:
       propertyPath: ChosenAdaptor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114307858842621480, guid: 98d6845839bb6184db062ae7c095c720,
+        type: 2}
+      propertyPath: ApiKey
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98d6845839bb6184db062ae7c095c720, type: 2}
   m_IsPrefabParent: 0
@@ -4897,7 +4902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131.19, y: -29.1}
+  m_AnchoredPosition: {x: 131.19, y: -29.100006}
   m_SizeDelta: {x: 5.5999756, y: 47.10028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1970275299
