@@ -105,8 +105,7 @@ Contributions are very welcome! Please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 * The wonderful skybox in the Ocean sample (prominent in most every application screenshot) was kindly provided by the most excellent people at [70-30.de](http://70-30.de/).
 
 # License
-All content licensed under [GNU GPL v3](./LICENSE) apart from:
-* SimpleJSON code licensed under [MIT](https://choosealicense.com/licenses/mit/).
+All content licensed under [MIT](./LICENSE), except:
 * Sky box asset in the Ocean demo licensed under [CC-SA-4](https://choosealicense.com/licenses/cc-by-sa-4.0/).
 * GoogleVR licensed under the [Apache License v2](http://www.apache.org/licenses/LICENSE-2.0).
 
