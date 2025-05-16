@@ -1,5 +1,7 @@
 # Blockchain 3D: Open Source 3D and VR Blockchain Visualisations
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/KevinSmall/blockchain3d)
+
 > :warning: This project is now archived. Source code remains here but it won't receive any updates. For a detailed explanation see: https://blockchain3d.info/blog/release-324/
 
 ![](./GitHubImages/b3d-home-banner.jpg)
